@@ -1,0 +1,17 @@
+#base=js
+
+init.js
+utils.js
+inbox.item.convert.date.js
+inbox.item.actions.details.configure.js
+inbox.item.actions.opendetails.js
+inbox.item.actions.completetask.js
+inbox.item.actions.Mycompletetask.js
+inbox.item.actions.completeworkitem.js
+inbox.item.actions.delegateworkitem.js
+inbox.item.actions.stepbackworkitem.js
+inbox.item.actions.reassigntask.js
+inbox.item.actions.openlink.js
+inbox.list.viewsettings.js
+
+inbox.omnisearch.js

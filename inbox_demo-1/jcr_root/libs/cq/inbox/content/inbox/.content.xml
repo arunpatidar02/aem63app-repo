@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <calendarview/>
+    <addtask/>
+    <jcr:content
+        jcr:mixinTypes="[sling:VanityPath]"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Inbox"
+        sling:redirect="{Boolean}false"
+        sling:resourceType="granite/ui/components/shell/collectionpage"
+        sling:vanityOrder="{Long}301"
+        sling:vanityPath="/aem/inbox"
+        consoleId="cq-workflow-inbox"
+        contentPath="/etc/workflow/instances"
+        currentView="${state[&quot;shell.collectionpage.layoutId&quot;].string}"
+        modeGroup="cq-workflow-inbox-list"
+        omnisearchLocationPath="/libs/granite/omnisearch/content/metadata/inbox"
+        targetCollection=".cq-workflow-inbox-list">
+        <head/>
+        <breadcrumbs/>
+        <views/>
+        <actions jcr:primaryType="nt:unstructured">
+            <secondary/>
+            <selection jcr:primaryType="nt:unstructured">
+                <completeTask/>
+                <completeWorkitem/>
+                <stepbackWorkitem/>
+                <delegateWorkitem/>
+                <reassignTask/>
+                <details/>
+                <openProject/>
+                <openPayload/>
+                <createProjectFromTask/>
+                <completeMyTask
+                    granite:rel="cq-inbox-task-complete"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="cq.inbox.action.MycompleteTask"
+                    activeSelectionCount="single"
+                    formId="updatetaskform"
+                    icon="check"
+                    text="My Complete"
+                    variant="actionBar"/>
+            </selection>
+        </actions>
+        <rails/>
+    </jcr:content>
+    <images/>
+    <details/>
+    <dialogs/>
+    <commons/>
+</jcr:root>

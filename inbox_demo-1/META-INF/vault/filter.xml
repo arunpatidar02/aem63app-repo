@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/libs/cq/inbox/content/inbox/dialogs/myTaskcompletedialog"/>
+    <filter root="/libs/cq/inbox/content/inbox/jcr:content/actions/selection/completeMyTask"/>
+    <filter root="/libs/cq/inbox/gui/components/inbox/clientlibs/inbox/js/inbox/inbox.item.actions.Mycompletetask.js"/>
+    <filter root="/libs/cq/inbox/gui/components/inbox/clientlibs/inbox/js.txt"/>
+</workspaceFilter>

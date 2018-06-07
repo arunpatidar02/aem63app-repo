@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:vlt="http://www.day.com/jcr/vault/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:created="{Date}2018-06-07T10:30:12.335+02:00"
+    jcr:createdBy="admin"
+    jcr:description=""
+    jcr:lastModified="{Date}2018-06-07T10:30:12.335+02:00"
+    jcr:lastModifiedBy="admin"
+    jcr:primaryType="vlt:PackageDefinition"
+    buildCount="1"
+    builtWith="Adobe Experience Manager-6.3.0"
+    group="AEM63App"
+    lastUnwrapped="{Date}2018-06-07T10:30:12.335+02:00"
+    lastUnwrappedBy="admin"
+    lastWrapped="{Date}2018-06-07T10:30:12.335+02:00"
+    lastWrappedBy="admin"
+    name="inbox_demo"
+    version="1">
+    <filter jcr:primaryType="nt:unstructured">
+        <f0
+            jcr:primaryType="nt:unstructured"
+            mode="replace"
+            root="/libs/cq/inbox/content/inbox/dialogs/myTaskcompletedialog"
+            rules="[]"/>
+        <f1
+            jcr:primaryType="nt:unstructured"
+            mode="replace"
+            root="/libs/cq/inbox/content/inbox/jcr:content/actions/selection/completeMyTask"
+            rules="[]"/>
+        <f2
+            jcr:primaryType="nt:unstructured"
+            mode="replace"
+            root="/libs/cq/inbox/gui/components/inbox/clientlibs/inbox/js/inbox/inbox.item.actions.Mycompletetask.js"
+            rules="[]"/>
+        <f3
+            jcr:primaryType="nt:unstructured"
+            mode="replace"
+            root="/libs/cq/inbox/gui/components/inbox/clientlibs/inbox/js.txt"
+            rules="[]"/>
+    </filter>
+</jcr:root>
