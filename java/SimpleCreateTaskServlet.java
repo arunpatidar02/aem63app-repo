@@ -29,25 +29,23 @@ public class SimpleCreateTaskServlet extends SlingSafeMethodsServlet {
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
-			//logger.info("Component Path ==> {}", request.getResource().getPath());
-			
-			TaskManager taskManager = request.getResourceResolver().adaptTo(TaskManager.class);
-			try {
-				Task newTask = taskManager.getTaskManagerFactory().newTask("Notification");
-				newTask.setName("Demo Task");
-		        newTask.setContentPath("/content/AEM63App/en?showCustom=true");
-		        newTask.setDescription("Demo Task");
-		        newTask.setInstructions("Demo instruction");
-		        newTask.setCurrentAssignee("aem63user1");
-		        taskManager.createTask(newTask);
-		        
-			} catch (TaskManagerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		// logger.info("Component Path ==> {}", request.getResource().getPath());
+
+		TaskManager taskManager = request.getResourceResolver().adaptTo(TaskManager.class);
+		try {
+			Task newTask = taskManager.getTaskManagerFactory().newTask("Notification");
+			newTask.setName("Demo Task");
+			newTask.setContentPath("/content/AEM63App/en?showCustom=true");
+			newTask.setDescription("Demo Task");
+			newTask.setInstructions("Demo instruction");
+			newTask.setCurrentAssignee("aem63user1");
+			taskManager.createTask(newTask);
+
+		} catch (TaskManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
-
-
 
 }
