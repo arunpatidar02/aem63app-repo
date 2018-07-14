@@ -54,7 +54,6 @@ import org.slf4j.LoggerFactory;
 				Event event = it.nextEvent();
 				try {
 						logger.info("*************Path updated: {}", event.getPath());
-						session.save();
 					
 				}
 				catch (Exception e) {
