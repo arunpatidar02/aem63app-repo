@@ -38,22 +38,16 @@ public class CreateVersionPage implements WorkflowProcess {
 	public void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {
 		WorkflowData workflowData = item.getWorkflowData();
 			String path = workflowData.getPayload().toString();
-			log.info("path {}",path);
 			resourceResolver = getResourceResolver(session.getSession());
 			Page page = resourceResolver.getResource(path).adaptTo(Page.class);
 			PageManager pm = resourceResolver.adaptTo(PageManager.class);
 			try {
-				log.info("try");
 				if (page != null) {
-					log.info("if");
-					log.info("Title {}",pm.getPage(path).getTitle());
-					pm.createRevision(page, "Test", "Test1");
-					log.info("after pm");
+					pm.createRevision(page, "Test", "Test-comment");
 				}
 			} catch (WCMException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				log.info("Exception {}",e.getMessage());
 			}
 		}
 	
