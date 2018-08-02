@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 //DAM API
 import com.day.cq.dam.api.Asset;
 
-@Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "= Get Asset Zip Servlet",
+@Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "= Get Asset file Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_GET, "sling.servlet.paths=" + "/bin/download/asset" })
 public class DownloadAssetsImage extends org.apache.sling.api.servlets.SlingAllMethodsServlet {
 
