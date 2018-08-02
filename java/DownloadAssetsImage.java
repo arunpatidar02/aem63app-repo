@@ -48,9 +48,6 @@ public class DownloadAssetsImage extends org.apache.sling.api.servlets.SlingAllM
 	Map<String, Object> paramMap = new HashMap<String, Object>();
 
 	@Override
-	// The GET Method uses the AEM QueryBuilder API to retrieve DAM Assets, places
-	// them in a ZIP and returns it
-	// in the HTTP output stream
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServerException, IOException {
 
