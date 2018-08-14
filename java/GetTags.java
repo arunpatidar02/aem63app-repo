@@ -29,7 +29,7 @@ public class GetTags extends SlingSafeMethodsServlet {
 			TagManager tagManager = req.getResourceResolver().adaptTo(TagManager.class);
 
 			Tag tagObj = tagManager.resolve("/content/cq:tags/we-retail/apparel/hat");
-			Tag tagObj2 = tagManager.resolve("/etc/tags/we-retail/apparel/newhat");
+			Tag tagObj2 = tagManager.resolve("/etc/tags/we-retail/apparel/hat");
 
 			resp.getWriter().write("<p>Hat Tag details(Content) " + tagObj.getTitle() + "</p>");
 			resp.getWriter().write("<p>Hat Tag details(etc) " + tagObj2.getTitle() + "</p>");
