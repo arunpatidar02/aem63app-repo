@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.query.Row;
 
 /**
- * Custom case insensitive predicate for like operation
- * caseinsensitive.property=jcr:content/@jcr:title caseinsensitive.value=
- * queryString %
+ * Custom case insensitive predicate for like operation e.g.
+ * caseinsensitive.property=jcr:content/@jcr:title 
+ * caseinsensitive.value=queryString %
  *
  */
 @Component(factory = "com.day.cq.search.eval.PredicateEvaluator/caseinsensitive")
