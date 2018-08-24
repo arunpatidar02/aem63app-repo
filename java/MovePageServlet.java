@@ -15,6 +15,10 @@ import org.osgi.service.component.annotations.Component;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
+/*
+ * Rename old-page to new-page at /content/we-retail/us/en/men
+ */
+
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Page Rename Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_GET, "sling.servlet.paths=" + "/bin/page/move-page" })
 public class MovePageServlet extends SlingAllMethodsServlet {
