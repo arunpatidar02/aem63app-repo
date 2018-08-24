@@ -31,13 +31,11 @@ public class MovePageServlet extends SlingAllMethodsServlet {
 		Page page = req.getResourceResolver().getResource("/content/we-retail/us/en/men/old-page").adaptTo(Page.class);
 		PageManager pm = req.getResourceResolver().adaptTo(PageManager.class);
 		try {
-			resp.getWriter().write(page.getTitle());
-			resp.getWriter().write(pm.toString());
 			pm.move(page, "/content/we-retail/us/en/men/new-page", null, false, true, null);
 			resp.getWriter().write("Page moved Suucesfully");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			resp.getWriter().write("ERROR : Not able to move Page , something is wrong" + e.getMessage());
+			resp.getWriter().write("ERROR : Not able to move Page , something is wrong " + e.getMessage());
 			e.printStackTrace(resp.getWriter());
 		}
 
