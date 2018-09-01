@@ -20,7 +20,21 @@ public class ContentFragmentContent extends WCMUsePojo {
 	@Override
 	public void activate() {
 		String cfInput = get("cfInput", String.class);
-		cfInput = cfInput + "/jcr:content/renditions/original/jcr:content";
+		String variation="";
+		try  {
+			variation = get("variation", String.class);
+			if(variation.equals("master")) {
+				variation = "original";	
+			}
+		}
+		catch(Exception e) {
+			variation = "original";	
+		}
+		
+		cfInput = cfInput + "/jcr:content/renditions/"+variation+"/jcr:content";
+		
+		log.info(cfInput);
+		
 		try {
 			Node cdNode = getResource().getResourceResolver().getResource(cfInput).adaptTo(Node.class);
 			if (cdNode != null) {
