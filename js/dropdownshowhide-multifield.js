@@ -4,10 +4,10 @@
     // when dialog gets injected
     $(document).on("foundation-contentloaded", function(e) {
         // if there is already an inital value make sure the according target element becomes visible
-        showHideHandler($(".cq-dialog-dropdown-showhide2", e.target));
+        showHideHandler($(".cq-dialog-dropdown-showhide-multi", e.target));
     });
 
-    $(document).on("select", ".cq-dialog-dropdown-showhide2", function(e) {
+    $(document).on("select", ".cq-dialog-dropdown-showhide-multi", function(e) {
         showHideHandler($(this));
     });
 
