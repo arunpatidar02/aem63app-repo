@@ -14,7 +14,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(service=Servlet.class,
 property={
 Constants.SERVICE_DESCRIPTION+"= Header Servlet",
-"sling.servlet.methods=" + HttpConstants.METHOD_POST,
+"sling.servlet.methods=" + HttpConstants.METHOD_GET,
 "sling.servlet.paths=/bin/LoginServlet",
 //"sling.servlet.resourceTypes="+"travellingdiva/components/structure/login",
 "sling.servlet.extensions="+"txt"
