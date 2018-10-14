@@ -1,10 +1,8 @@
 <meta charset="utf-8" data-sly-use.head="head.js">
 <title>${currentPage.title || currentPage.name}</title>
-<meta data-sly-test="${head.keywords}" name="keywords" content="${head.keywords}"/>
-<meta data-sly-test="${properties.jcr:description}" name="description" content="${properties.jcr:description}"/>
+<meta name="keywords" content="${head.keywords}"/>
+<meta name="description" content="${properties.jcr:description}"/>
 <link data-sly-test="${head.favIcon}" rel="icon" href="${head.favIcon}"/>
-
-
 
 // Server-side JavaScript for the head.html logic
 use(function () {
