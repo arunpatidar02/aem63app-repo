@@ -1,0 +1,20 @@
+<meta charset="utf-8" data-sly-use.head="head.js">
+<title>${currentPage.title || currentPage.name}</title>
+<meta name="keywords" content="${head.keywords}"/>
+<meta name="description" content="${properties.jcr:description}"/>
+<link data-sly-test="${head.favIcon}" rel="icon" href="${head.favIcon}"/>
+<link rel="canonical" href="${head.canonical}"/>
+
+
+// Server-side JavaScript for the head.html logic
+use(function () {
+    var WCMUtils = Packages.com.day.cq.wcm.commons.WCMUtils;
+    var resourceResolver = resource.getResourceResolver();
+
+    return {
+        keywords: WCMUtils.getKeywords(currentPage, false),
+        favIcon: resourceResolver.getResource(currentDesign.getPath() + "/favicon.ico").getPath(),
+        canonical:"https://aem63app.com"+currentPage.getPath()+".html"
+    };
+});
+
