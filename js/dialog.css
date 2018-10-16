@@ -1,0 +1,8 @@
+.cq-dialog-content .rte-ui .rte-toolbar{
+	 visibility: visible!important;
+ }
+
+
+coral-dialog.cq-dialog-floating > div.coral-Dialog-wrapper > form > coral-dialog-content > div.cq-dialog-content {
+	 overflow: auto!important;
+ }
