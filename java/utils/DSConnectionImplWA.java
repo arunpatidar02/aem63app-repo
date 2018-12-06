@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
 import org.slf4j.Logger;
@@ -67,6 +68,7 @@ public class DSConnectionImplWA implements DSConnectionWA {
 	}
 	
 	@Activate
+	@Modified
     public void activate() {
           try {
                    dataSource = (DataSource) source.getDataSource(DATA_SOURCE_NAME);
