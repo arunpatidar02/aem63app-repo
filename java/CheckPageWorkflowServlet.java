@@ -35,11 +35,11 @@ public class CheckPageWorkflowServlet extends SlingSafeMethodsServlet {
 		resp.setContentType("text/html");
 		resp.getWriter().write("Workflow Found : "+status);
 		if(status) {
-			resp.getWriter().write("<br>Workflows are : "+status);
+			resp.getWriter().write("<h3>Workflows are </h3>");
 			List<Workflow> wfList =ws.getWorkflows(true);
 			Iterator<Workflow> it = wfList.iterator();
 			while(it.hasNext()) {
-				resp.getWriter().write("Workflow Instance Id : "+it.next().getId());
+				resp.getWriter().write("<br>Workflow Instance Id : "+it.next().getId());
 			}
 		}
 		resp.getWriter().close();
