@@ -11,15 +11,24 @@ import com.adobe.granite.ui.clientlibs.LibraryType;
 /*
  * Sightly Code
  * 
+<!-- CSS -->
+<sly data-sly-use.jsObj="com.aem.community.core.components.JSModel" data-sly-list="${jsObj.cssFiles}">
+    <link rel="stylesheet" href="${item}" type="text/css" async>
+</sly>
+
+<!-- JS -->
 <sly data-sly-use.jsObj="com.aem.community.core.components.JSModel" data-sly-list="${jsObj.jsFiles}">
  	<script async type="text/javascript" src="${item}"></script>
 </sly>
+
+
  * 
  */
 
 
 public class JSModel extends WCMUsePojo {
-	public List<String> jsFiles = new ArrayList<String>();;
+	public List<String> jsFiles = new ArrayList<String>();
+	public List<String> cssFiles = new ArrayList<String>();;
 
 	@Override
 	public void activate() throws Exception {
@@ -32,11 +41,21 @@ public class JSModel extends WCMUsePojo {
 			for (ClientLibrary lib : libs) {
 				jsFiles.add(lib.getIncludePath(LibraryType.JS));
 			}
+			
+			libs = clientlibmanager.getLibraries(categoryArray, LibraryType.CSS,
+					false, false);
+			for (ClientLibrary lib : libs) {
+				cssFiles.add(lib.getIncludePath(LibraryType.CSS));
+			}
 		}
 	}
 	
 	public List<String> getJsFiles() {
 		return jsFiles;
+	}
+	
+	public List<String> getCSSFiles() {
+		return cssFiles;
 	}
 
 }
