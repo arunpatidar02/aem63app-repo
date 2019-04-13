@@ -8,6 +8,16 @@ import com.adobe.granite.ui.clientlibs.ClientLibrary;
 import com.adobe.granite.ui.clientlibs.HtmlLibraryManager;
 import com.adobe.granite.ui.clientlibs.LibraryType;
 
+/*
+ * Sightly Code
+ * 
+<sly data-sly-use.jsObj="com.aem.community.core.components.JSModel" data-sly-list="${jsObj.jsFiles}">
+ 	<script async type="text/javascript" src="${item}"></script>
+</sly>
+ * 
+ */
+
+
 public class JSModel extends WCMUsePojo {
 	public List<String> jsFiles = new ArrayList<String>();;
 
@@ -30,3 +40,4 @@ public class JSModel extends WCMUsePojo {
 	}
 
 }
+
