@@ -7,7 +7,7 @@
         showHideHandler($(".cq-dialog-dropdown-showhide-multi", e.target));
     });
 
-    $(document).on("select", ".cq-dialog-dropdown-showhide-multi", function(e) {
+    $(document).on("selected", ".cq-dialog-dropdown-showhide-multi", function(e) {
         showHideHandler($(this));
     });
 
