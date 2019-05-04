@@ -21,8 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = Servlet.class, immediate = true, property = {
-		Constants.SERVICE_DESCRIPTION + "=Simple SQL 2 Serach Servlet", "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-		"sling.servlet.paths=" + "/bin/page/simple-sql2-search" })
+		Constants.SERVICE_DESCRIPTION + "=Simple SQL 2 Serach Servlet",
+		"sling.servlet.methods=" + HttpConstants.METHOD_GET, "sling.servlet.paths=" + "/bin/page/simple-sql2-search" })
 public class SimpleSQL2SearchServlet extends SlingAllMethodsServlet {
 
 	@Reference
@@ -33,27 +33,27 @@ public class SimpleSQL2SearchServlet extends SlingAllMethodsServlet {
 
 	public void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
-		
-		Session session = null;
-			try {
-				String q = "SELECT * FROM [cq:Page] AS s WHERE s.[jcr:content/sling:resourceType] = 'AEM63App/components/structure/page' AND ISDESCENDANTNODE('/content/AEM63App/en')";
-				session = repository.loginService("readService",null);
-				final Query query=session.getWorkspace().getQueryManager().createQuery(q,Query.JCR_SQL2);
-				final NodeIterator result=query.execute().getNodes();
-				logger.info("Result node {}" , result.getSize());
-				response.getWriter().print("Result nodes found  : "+result.getSize());
 
-			} catch (RepositoryException e) {
-				// TODO Auto-generated catch block
-				logger.info("Exception {}", e);
-				response.getWriter().print(e.getMessage());
-			}finally {
-				if(session != null)
+		Session session = null;
+		try {
+			String q = "SELECT * FROM [cq:Page] AS s WHERE s.[jcr:content/sling:resourceType] = 'AEM63App/components/structure/page' AND ISDESCENDANTNODE('/content/AEM63App/en')";
+			session = repository.loginService("readService", null);
+			final Query query = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2);
+			final NodeIterator result = query.execute().getNodes();
+			logger.info("Result node {}", result.getSize());
+			response.getWriter().print("Result nodes found  : " + result.getSize());
+
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			logger.info("Exception {}", e);
+			response.getWriter().print(e.getMessage());
+		} finally {
+			if (session != null)
 				session.logout();
-				response.getWriter().close();
-		} 
+			response.getWriter().close();
+		}
 		response.setContentType("text/plain");
-		
+
 	}
 
 }
