@@ -32,7 +32,7 @@ public class GetFactoryConfigServlet extends SlingSafeMethodsServlet {
 			Configuration[] configurations = configAdmin.listConfigurations(filter);
 
 			resp.setHeader("Content-Type", "text/html");
-			String headStr = "<!DOCTYPE html> <html> <head> <title>Faeture Flags</title> <style> #feature {font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; } #feature td, #feature th {border: 1px solid #ddd; padding: 8px; } #feature tr:nth-child(even){background-color: #f2f2f2;} #feature tr:hover {background-color: #ddd;} #feature th {padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white; } </style> </head> <body>";
+			String headStr = "<!DOCTYPE html> <html> <head> <title>Factory Configuration Items</title> <style> #feature {font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; } #feature td, #feature th {border: 1px solid #ddd; padding: 8px; } #feature tr:nth-child(even){background-color: #f2f2f2;} #feature tr:hover {background-color: #ddd;} #feature th {padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white; } </style> </head> <body>";
 			String footStr = " </body> </html>";
 
 			String main = "<h2>Number of Configurations Found  - " + configurations.length + "</h2>";
