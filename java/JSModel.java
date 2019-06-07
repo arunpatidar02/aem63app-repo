@@ -1,5 +1,4 @@
-package com.aem.community.core.components;
-
+package com.acc.aem64.core.models;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +14,10 @@ import com.adobe.granite.ui.clientlibs.LibraryType;
 <sly data-sly-use.jsObj="com.aem.community.core.components.JSModel" data-sly-list="${jsObj.cssFiles}">
     <link rel="stylesheet" href="${item}" type="text/css" async>
 </sly>
-
 <!-- JS -->
 <sly data-sly-use.jsObj="com.aem.community.core.components.JSModel" data-sly-list="${jsObj.jsFiles}">
  	<script async type="text/javascript" src="${item}"></script>
 </sly>
-
-
  * 
  */
 
@@ -35,7 +31,7 @@ public class JSModel extends WCMUsePojo {
 
 		HtmlLibraryManager clientlibmanager = getSlingScriptHelper().getService(HtmlLibraryManager.class);
 		if (clientlibmanager != null) {
-			String[] categoryArray = { "AEM63Lab.page.async" };
+			String[] categoryArray = { "AEM64App.base" };
 			java.util.Collection<ClientLibrary> libs = clientlibmanager.getLibraries(categoryArray, LibraryType.JS,
 					false, false);
 			for (ClientLibrary lib : libs) {
@@ -51,9 +47,9 @@ public class JSModel extends WCMUsePojo {
 			}
 		}
 	}
-	
+
 	private String getClientLibPath(ClientLibrary lib, LibraryType type) {
-		String libPath = lib.getIncludePath(LibraryType.JS);
+		String libPath = lib.getIncludePath(type);
 		if(lib.allowProxy()) {
 			libPath = libPath.replaceFirst("^/apps/", "/etc.clientlibs/");
 		}
@@ -69,4 +65,3 @@ public class JSModel extends WCMUsePojo {
 	}
 
 }
-
