@@ -39,19 +39,25 @@ public class JSModel extends WCMUsePojo {
 			java.util.Collection<ClientLibrary> libs = clientlibmanager.getLibraries(categoryArray, LibraryType.JS,
 					false, false);
 			for (ClientLibrary lib : libs) {
-				String libPath = lib.getIncludePath(LibraryType.JS);
-				libPath = libPath.replaceFirst("^/apps/", "/etc.clientlibs/");
+				String libPath = getClientLibPath(lib,LibraryType.JS);
 				jsFiles.add(libPath);
 			}
 			
 			libs = clientlibmanager.getLibraries(categoryArray, LibraryType.CSS,
 					false, false);
 			for (ClientLibrary lib : libs) {
-				String libPath = lib.getIncludePath(LibraryType.CSS);
-				libPath = libPath.replaceFirst("^/apps/", "/etc.clientlibs/");
+				String libPath = getClientLibPath(lib,LibraryType.CSS);
 				cssFiles.add(libPath);
 			}
 		}
+	}
+	
+	private String getClientLibPath(ClientLibrary lib, LibraryType type) {
+		String libPath = lib.getIncludePath(LibraryType.JS);
+		if(lib.allowProxy()) {
+			libPath = libPath.replaceFirst("^/apps/", "/etc.clientlibs/");
+		}
+		return libPath;
 	}
 	
 	public List<String> getJsFiles() {
