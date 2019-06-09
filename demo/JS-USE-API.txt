@@ -1,0 +1,36 @@
+-------- script.js -------------
+
+// Server-side JavaScript to get Coookie
+
+use(function () {
+
+    var cookie = request.getCookie("wcmmode");
+
+    var cookieFound=false;
+
+    if(cookie!=null && cookie.value=="edit"){
+
+cookieFound = true;
+
+    }
+
+    return {
+
+        cookieVal: cookie.value,
+
+        cookieFound:cookieFound
+
+    };
+
+});
+
+ 
+
+-------- Sightly code --------------
+
+<sly data-sly-use.cObj="script.js" data-sly-test="${cObj.cookieFound }">
+
+     ${cObj.cookieVal}
+
+</sly>
+
