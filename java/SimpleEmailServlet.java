@@ -68,7 +68,7 @@ public class SimpleEmailServlet extends SlingSafeMethodsServlet {
 			parameters.put("id", "0001");
 			parameters.put("host.prefix", "http://localhost");
 			parameters.put("faqpath", "/content/AEM63App/faq");
-			final MailTemplate mailTemplate = MailTemplate.create(templateNode.getPath(), templateNode.getSession());
+			final MailTemplate mailTemplate = MailTemplate.create(EMAIL_TEMPLATE, templateNode.getSession());
 			HtmlEmail email = mailTemplate.getEmail(StrLookup.mapLookup(parameters), HtmlEmail.class);
 			email.setSubject("AEM - Demo Email for Templated email");
 			email.addTo("noreply.aem@gmail.com");
