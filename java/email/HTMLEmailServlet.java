@@ -41,7 +41,7 @@ import com.day.cq.mailer.MessageGatewayService;
 </dependency>
  * 
  * -------------- Email Template and mail output ---------
- * https://github.com/arunpatidar02/aem63app-repo/tree/master/demo/email
+ * https://github.com/arunpatidar02/aem63app-repo/tree/master/java/email
  * 
  */
 
