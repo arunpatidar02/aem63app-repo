@@ -35,21 +35,21 @@ public class SiteSimpleRenderConditionsServlet extends SlingSafeMethodsServlet {
 			throws ServletException, IOException {
 
 		final SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) req;
-		boolean show = true;
+		boolean render = true;
 
 		ValueMap cfg = ResourceUtil.getValueMap(req.getResource());
 		String patterns[] = cfg.get("hiddenPaths", new String[] {});
 		String sitePath = slingRequest.getRequestPathInfo().getSuffix();
-		// String appPath = slingRequest.getRequestPathInfo().getResourcePath().replaceAll("^/mnt/override", "");
+		// String appPath = slingRequest.getRequestPathInfo().getResourcePath().replaceAll("^/mnt/override","");
 
 		if (patterns != null && sitePath != null) {
-			show = isDisplay(patterns, sitePath);
+			render = isRender(patterns, sitePath);
 		}
 
-		req.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(show));
+		req.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(render));
 	}
 
-	private boolean isDisplay(String[] patterns, String path) {
+	private boolean isRender(String[] patterns, String path) {
 		for (int i = 0; i < patterns.length; i++) {
 			if (path.matches(patterns[i])) {
 				return false;
