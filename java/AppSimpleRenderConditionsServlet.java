@@ -36,17 +36,17 @@ public class AppSimpleRenderConditionsServlet extends SlingSafeMethodsServlet {
 			throws ServletException, IOException {
 
 		ValueMap cfg = ResourceUtil.getValueMap(req.getResource());
-		boolean hide = false;
+		boolean show = true;
 		String apps[] = cfg.get("hidden", new String[] {});
 
 		if (apps != null) {
 			String app = req.getPathInfo().replaceAll("/mnt/override/apps/", "").replaceAll("\\/.*", "");
 			List<String> appList = Arrays.asList(apps);
 			if (appList.contains(app)) {
-				hide = true;
+				show = false;
 			}
 		}
 
-		req.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(hide));
+		req.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(show));
 	}
 }
