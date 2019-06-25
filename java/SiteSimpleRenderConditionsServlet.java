@@ -2,8 +2,6 @@
 package com.acc.aem64.core.servlets;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -36,18 +34,27 @@ public class SiteSimpleRenderConditionsServlet extends SlingSafeMethodsServlet {
 	protected void doGet(final SlingHttpServletRequest req, final SlingHttpServletResponse resp)
 			throws ServletException, IOException {
 
-		ValueMap cfg = ResourceUtil.getValueMap(req.getResource());
+		final SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) req;
 		boolean show = true;
-		String sites[] = cfg.get("hidden", new String[] {});
 
-		if (sites != null) {
-			String site = req.getPathInfo().replaceAll("^.*_cq_dialog\\.html\\/content/", "").replaceAll("\\/.*", "");
-			List<String> appList = Arrays.asList(sites);
-			if (appList.contains(site)) {
-				show = false;
-			}
+		ValueMap cfg = ResourceUtil.getValueMap(req.getResource());
+		String patterns[] = cfg.get("hiddenPaths", new String[] {});
+		String sitePath = slingRequest.getRequestPathInfo().getSuffix();
+		// String appPath = slingRequest.getRequestPathInfo().getResourcePath().replaceAll("^/mnt/override", "");
+
+		if (patterns != null && sitePath != null) {
+			show = isDisplay(patterns, sitePath);
 		}
 
 		req.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(show));
+	}
+
+	private boolean isDisplay(String[] patterns, String path) {
+		for (int i = 0; i < patterns.length; i++) {
+			if (path.matches(patterns[i])) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
