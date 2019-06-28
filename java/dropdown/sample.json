@@ -1,0 +1,19 @@
+[
+    {"text": "Background","value": "background","disabled": true},
+    {"text": "White","value": "white"},
+	  {"text": "Black","value": "black"},
+    {"text": "Green","value": "green"},
+    {"text": "Orange","value": "orange","selected": true},
+    {"text": "Blue","value": "blue"},
+    {"text": "Red","value": "red"},
+    {"text": "Dark Grey","value": "darkgrey-text"},
+    {"text": "Light Grey","value": "lightgrey-text"},
+    {"text": "Check","value": "list-checked"},
+    {"text": "Cross","value": "list-crossed"},
+    {"text": "Primary","value": "btn-primary"},
+    {"text": "Secondary","value": "btn-secondary"},
+    {"text": "Image Style","value": "IS"},
+    {"text": "Responsive","value": "img-responsive"},
+    {"text": "Banner","value": "img-banner"},
+    {"text": "Icon","value": "img-icon"}
+]
