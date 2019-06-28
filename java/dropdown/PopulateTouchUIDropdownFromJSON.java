@@ -10,6 +10,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.RepositoryException;
+import javax.jcr.ValueFormatException;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
@@ -35,9 +38,30 @@ import com.adobe.granite.ui.components.ds.ValueMapResource;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Servlet that use to populate Touch UI dropdown options dynamically from json file
+ * 
+ * datasource node properties 
+ * - options (String) - repository path of json file, examples : 
+ 		/apps/commons/utils/json/dropdown/color.json
+ * - sling:resourceType (String)
+  	utils/granite/components/select/datasource/json/file 
+ * 
+ * 
+ * 
+ * ------ POM Dependencies http and Gson -------- 
+ * <dependency>
+ * 	<groupId>com.google.code.gson</groupId> 
+ * 	<artifactId>gson</artifactId>
+ *  <version>2.8.5</version>
+ * </dependency>
+ * 
+ * 
+ */
+
 @Component(service = Servlet.class, immediate = true, property = {
 		Constants.SERVICE_DESCRIPTION + "=Get Coral Dropdown options from json ",
-		"sling.servlet.resourceTypes=utils/granite/components/select/datasource/json",
+		"sling.servlet.resourceTypes=utils/granite/components/select/datasource/json/file",
 		"sling.servlet.methods=" + HttpConstants.METHOD_GET })
 public class PopulateTouchUIDropdownFromJSON extends SlingSafeMethodsServlet {
 
@@ -60,34 +84,17 @@ public class PopulateTouchUIDropdownFromJSON extends SlingSafeMethodsServlet {
 			if (optionJosn != null) {
 				Resource jsonResource = resolver.getResource(optionJosn + "/jcr:content");
 				if (!ResourceUtil.isNonExistingResource(jsonResource)) {
-					Node cfNode = jsonResource.adaptTo(Node.class);
-					InputStream in = cfNode.getProperty("jcr:data").getBinary().getStream();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-					StringBuilder out = new StringBuilder();
-					String line;
-					while ((line = reader.readLine()) != null) {
-						out.append(line);
-					}
-					reader.close();
 
 					Gson gson = new Gson();
 					TypeToken<List<Option>> token = new TypeToken<List<Option>>() {};
-					List<Option> optionList = gson.fromJson(out.toString(), token.getType());
+					
+					List<Option> optionList = gson.fromJson(getJsonString(jsonResource), token.getType());
 					List<Resource> optionResourceList = new ArrayList<Resource>();
 
 					Iterator<Option> oi = optionList.iterator();
 					while (oi.hasNext()) {
 						Option opt = oi.next();
-						ValueMap vm = new ValueMapDecorator(new HashMap<String, Object>());
-
-						vm.put("value", opt.getValue());
-						vm.put("text", opt.getText());
-						if (opt.isSelected()) {
-							vm.put("selected", true);
-						}
-						if (opt.isDisabled()) {
-							vm.put("disabled", true);
-						}
+						ValueMap vm = getOptionValueMap(opt);
 						optionResourceList
 								.add(new ValueMapResource(resolver, new ResourceMetadata(), "nt:unstructured", vm));
 					}
@@ -109,6 +116,34 @@ public class PopulateTouchUIDropdownFromJSON extends SlingSafeMethodsServlet {
 			logger.info("Error in Getting Drop Down Values ");
 			e.printStackTrace();
 		}
+	}
+
+	private ValueMap getOptionValueMap(Option opt) {
+		ValueMap vm = new ValueMapDecorator(new HashMap<String, Object>());
+
+		vm.put("value", opt.getValue());
+		vm.put("text", opt.getText());
+		if (opt.isSelected()) {
+			vm.put("selected", true);
+		}
+		if (opt.isDisabled()) {
+			vm.put("disabled", true);
+		}
+		return vm;
+	}
+
+	private String getJsonString(Resource jsonResource)
+			throws RepositoryException, ValueFormatException, PathNotFoundException, IOException {
+		Node cfNode = jsonResource.adaptTo(Node.class);
+		InputStream in = cfNode.getProperty("jcr:data").getBinary().getStream();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			sb.append(line);
+		}
+		reader.close();
+		return sb.toString();
 	}
 
 	private class Option {
