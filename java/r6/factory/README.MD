@@ -7,5 +7,5 @@ https://github.com/arunpatidar02/aem63app-repo/blob/master/java/r6/factory/image
 https://github.com/arunpatidar02/aem63app-repo/blob/master/java/r6/factory/images/factory-config1.PNG
 https://github.com/arunpatidar02/aem63app-repo/blob/master/java/r6/factory/images/factory-config2.PNG
 
-#### Test Servlet
+#### Test Servlet - Output
 https://github.com/arunpatidar02/aem63app-repo/blob/master/java/r6/factory/images/factory-servlet.PNG
