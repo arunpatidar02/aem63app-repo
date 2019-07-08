@@ -8,7 +8,7 @@ public @interface PageJSONServletConfig {
 	
 	
 	@AttributeDefinition(
-	        name = "properties",
+	        name = "exclude properties",
 	        description = "List of properties to exclude from JSON response",
 	        type = AttributeType.STRING
 	    )
