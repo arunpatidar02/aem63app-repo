@@ -1,125 +1,95 @@
-# Osgi Configuration API
 
-This is a restful API to access Apache Sling web console osgi configuration in AEM.
+# 'hcms' Selector to get Page JSON Response
 
-  - Allow to access all configurations
-  - filter configuration based on pid
-  - filter configuration based on factory pid
-  - filter configuration based on repository configuration(**sling:OsgiConfig**) type
+This Selector is similar to 'model' selector but with extension
+  - Allow to rename properties
+  - filter results(exclude properties based on config)
+  - include reference response e.g. experience fragments
+
 
 # Uses
-### All Configurations
-  URL - http://host:port/bin/api/osgiconfig.json
+  URL - http://host:port/resourcepath.hcms.json
+  Examples : 
+  - [http://localhost:4504/content/we-retail/language-masters/en/men.hcms.json](http://localhost:4504/content/we-retail/language-masters/en/men.hcms.json)
   
-### All repository based Configurations
-  URL - http://host:port/bin/api/osgiconfig.json?repo=true
+  - [http://localhost:4504/content/experience-fragments/demoxf/demoxf.hcms.json](http://localhost:4504/content/experience-fragments/demoxf/demoxf.hcms.json)
+ 
+ with `tidy` selector
+  - [http://localhost:4504/content/experience-fragments/demoxf/demoxf.hcms.tidy.json](http://localhost:4504/content/experience-fragments/demoxf/demoxf.hcms.tidy.json)
   
-### All non repository based Configurations
-  URL - http://host:port/bin/api/osgiconfig.json?repo=false
+## OSGI Config 
+  - exclude properties : list of properties to be excluded from json response
+ - include reference : list of properties which specify the reference of another resource.
+-  rename properties : list of property to rename if response , e.g.
+  originalname=newname
+-  limit : to restrict lookup if there is infinite loop due to reference inclusion or number of childnodes more then expected. 
   
-### Filtered Configurations (Url + Parameters)
-URL - http://host:port/bin/api/osgiconfig.json
-
-***Parameters*** 
-- **type** - `pid` or `fid`, specify the search for pid or factoryPid
-- **q** - pid or factory pid 
-- **repo** - `true` or `false`. Optional parameter is used to filter config based on their repository based config status
-
-> Example
-> - http://localhost:4504/bin/api/osgiconfig.json?type=pid&q=org.apache.sling.security.impl.ReferrerFilter
-> - http://localhost:4504/bin/api/osgiconfig.json?type=fid&q=org.apache.sling.commons.log.LogManager.factory.config
-> - http://localhost:4504/bin/api/osgiconfig.json?type=fid&q=org.apache.sling.commons.log.LogManager.factory.config&repo=true
-
+  
+![ Config in OSGI Console](https://github.com/arunpatidar02/aem63app-repo/blob/master/java/page/json/osgi-json-config.PNG)
+  
+  
 ## JSON Output
-JSON output contain array of config objects.
+JSON output contain array of node json objects. Each object have the `name`, `properties` and `childnodes` items.
+> The json object would not have properties or childnodes if they are empty, Thats means if node doesn't contains any property then there will be no property variable in json representation of the object and if there is no child node of a node then childnodes will be not there in the response)
 
 json representation of osgi configuration object
 ```js
+
 {
-    "pid": "org.apache.sling.security.impl.ReferrerFilter",
-    "changeCount": 1,
-    "properties": {
-      "filter.methods": [
-        "PUT",
-        "DELETE"
-      ],
-      "exclude.agents.regexp": [
-        ""
-      ],
-      "allow.hosts": [
-        ""
-      ],
-      "allow.hosts.regexp": [
-        ""
-      ],
-      "allow.empty": true
+  "name": "jcr:content",
+  "properties": {
+    "cq:tags": [],
+    "jcr:title": "demoXF",
+    "cq:xfVariantType": "web",
+    "type": "weretail/components/structure/xfpage",
+    "cq:template": "/conf/we-retail/settings/wcm/templates/experience-fragment-web-variation",
+    "cq:xfMasterVariation": true
+  },
+  "childnodes": [
+    {
+      "name": "root",
+      "properties": {
+        "type": "wcm/foundation/components/responsivegrid"
+      },
+      "childnodes": [
+        {
+          "name": "product_grid",
+          "properties": {
+            "tagsMatch": "any",
+            "pages": [
+              "/content/we-retail/language-masters/en/products/men/shirts/eton-short-sleeve-shirt",
+              "/content/we-retail/language-masters/en/products/men/pants/trail-model-pants",
+              "/content/we-retail/language-masters/en/products/men/shorts/pipeline-board-shorts",
+              "/content/we-retail/language-masters/en/products/men/shirts/amsterdam-short-sleeve-travel-shirt",
+              "/content/we-retail/language-masters/en/products/men/shorts/buffalo-plaid-shorts",
+              "/content/we-retail/language-masters/en/products/men/coats/portland-hooded-jacket"
+            ],
+            "feedEnabled": true,
+            "displayAs": "products",
+            "listFrom": "static",
+            "limit": "6",
+            "orderBy": "jcr:title",
+            "type": "weretail/components/content/productgrid",
+            "pageMax": "0"
+          }
+        },
+        {
+          "name": "image",
+          "properties": {
+            "isDecorative": "false",
+            "altValueFromDAM": "true",
+            "titleValueFromDAM": "true",
+            "fileReference": "/content/dam/core-components-examples/library/sample-assets/mini.jpg",
+            "displayPopupTitle": "true",
+            "type": "weretail/components/content/image"
+          }
+        }
+      ]
     }
-  }
+  ]
+}     
 ```
 
-json representation of osgi factory configuration object
-``` js
-{
-    "pid": "org.apache.sling.commons.log.LogManager.factory.config.ef61ce8d-cf4f-410b-9eb5-b1d629161880",
-    "factoryPid": "org.apache.sling.commons.log.LogManager.factory.config",
-    "bundleLocation": "slinginstall:<AEM-installation-dir>\\crx-quickstart\\launchpad\\startup\\1\\org.apache.sling.commons.log-5.1.0.jar",
-    "changeCount": 1,
-    "properties": {
-      "org.apache.sling.commons.log.names": [
-        "org.apache.sling.scripting.sightly.js.impl.jsapi.ProxyAsyncScriptableFactory"
-      ],
-      "org.apache.sling.commons.log.level": "ERROR",
-      "org.apache.sling.commons.log.pattern": "{0,date,dd.MM.yyyy HH:mm:ss.SSS} *{4}* [{2}] {3} {5}",
-      "org.apache.sling.commons.log.file": "logs/error.log"
-    }
-  }
-```
-
-json representation of osgi factory configuration object for repository based config
-``` js
-{
-    "pid": "org.apache.sling.commons.log.LogManager.factory.config.2fa52a0a-6347-4556-b78f-f0effdd88a61",
-    "factoryPid": "org.apache.sling.commons.log.LogManager.factory.config",
-    "bundleLocation": "slinginstall:<AEM-installation-dir>\\crx-quickstart\\launchpad\\startup\\1\\org.apache.sling.commons.log-5.1.0.jar",
-    "changeCount": 1,
-    "properties": {
-      "org.apache.sling.commons.log.names": [
-        "com.acc.aem64"
-      ],
-      "org.apache.sling.commons.log.level": "debug",
-      "org.apache.sling.commons.log.pattern": "{0,date,yyyy-MM-dd HH:mm:ss.SSS} {4} [{3}] {5}",
-      "org.apache.sling.commons.log.file": "logs/project-AEM64App.log"
-    },
-    "repositoryPaths": [
-      "/apps/AEM64App/config/org.apache.sling.commons.log.LogManager.factory.config-AEM64App"
-    ]
-  }
-```
-
-### Errors
-if `type` parameter is missing  
-````js
-"type parameter is missing"
-````
-
-if `q` parameter is missing  
-````js
-"q parameter is missing"
-````
-
-if `type` parameter value is not correct  
-````js
-"invalid type paramaeter value. It should be 'pid' or 'fid'"
-````
-
-> Note : if `repo` parameter value is not either `true` or `false`, then results will not be filtered based on `repo` param
-
-
-### No results
-if no configuration is found  
-````js
-"No configuration found for this request"
-````
 
 # POM Gson dependency
 ````xml
@@ -129,14 +99,3 @@ if no configuration is found
 	<version>2.8.5</version>
 </dependency>
 ````
-# OSGI Config Dashboard Page
-I used this API to create a osgi config dashboard which display all modified osgi config without login to web console.
-You can find the package `aem-tools-osgiconfig-1.zip` at https://github.com/arunpatidar02/osgi-config-api/blob/master/aem-tools-osgiconfig-1.zip and check https://aemlab.blogspot.com/2019/05/aem-osgi-config-dashboard.html to know more about this dashboard page.
-> Note : This zip package contains only nodes and UI code but doesn't contain OSGi bunndle(Servlet and other Java class). 
-
-> These java classes can be copied for here and use.
-
-# Limitations
-User must have read access at `/apps`, `/conf` and `/libs` in order to get respository based configurations. 
-Though this can be handle using service user and can be use in non prod publishers also with subservice session.
-check https://github.com/arunpatidar02/aem63app-repo/blob/master/java/SeesionInServletWithSubservice.java to know more about how to get sub service session in Servlet.
