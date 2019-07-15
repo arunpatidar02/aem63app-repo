@@ -91,7 +91,7 @@ After installing the package you can find the ColorPicker Plugins files at :
 
 ## Sample Components
 
-Sample Test Component package contains a sample component (/apps/mfHTL63/components/content/simple-rte)
+Sample Test Component package contains a sample component (***/apps/mfHTL63/components/content/simple-rte***)
 
 This component can be referred to as configure ColorPicker and StylePicker Plugin configurations.
 
