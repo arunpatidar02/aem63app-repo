@@ -240,10 +240,10 @@ Switch
             }
         }
         %>
-        <span><%= offText %></span>
-        <coral-switch <%= attrs.build() %>></coral-switch>
-        <span><%= onText %></span>
-		<%
+        <span class="coral3-Switch"><%= offText %></span>
+	<coral-switch <%= attrs.build() %>></coral-switch>
+	<span class="coral3-Switch"><%= onText %></span>
+	<%
         
         if (cfg.get("deleteHint", true)) {
             %><input <%= deleteAttrs.build() %>><%
