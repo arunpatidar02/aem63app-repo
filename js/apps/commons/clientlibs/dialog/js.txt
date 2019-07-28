@@ -1,0 +1,3 @@
+#base=js
+dialog.field.2column-layout.js
+dialog.sidepanel.js

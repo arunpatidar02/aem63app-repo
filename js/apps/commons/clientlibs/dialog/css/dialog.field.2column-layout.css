@@ -1,0 +1,6 @@
+/*CSS to show dialog field in 2 column layout with rowresume property*/
+.coral-Form-fieldwrapper.coral-Form-fieldwrapper--rowresume {
+    width: 44%;
+    display: inline-grid;
+    margin: 0 3%;
+}
