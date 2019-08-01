@@ -7,4 +7,5 @@ import com.adobe.granite.workflow.exec.WorkItem;
 
 public interface WorkflowRetryService {
 	public void retryWorkflow(WorkflowSession wfSession, WorkItem workflowItem, Map<String, String> param);
+	public void retryWorkflow(String workflowItemPath, Map<String, String> param);
 }
