@@ -10,7 +10,6 @@ WF_SERVLET=/bin/workflow/inbox
 SERVICE_TOKEN=/libs/granite/csrf/token.json
 AEM_TOKEN="$(${CURL} -s -H User-Agent:curl -H Referer:${REFERER} -u ${AEM_LOGIN} ${REFERER}${SERVICE_TOKEN} | sed 's/token//' | sed 's/[{":"}]//g')"
 WORKFLOW_ITEM=/var/workflow/instances/server0/2019-07-28/request_copy_2/workItems/node1_var_workflow_instances_server0_2019-07-28_request_copy_2
-
 COMMENT='Retry by Admin'
 
 #Encode workflow item to post as form data; --data-urlencode is not working, using urlencode function as workaround
