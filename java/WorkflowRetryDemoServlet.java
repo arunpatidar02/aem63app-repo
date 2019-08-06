@@ -44,7 +44,11 @@ public class WorkflowRetryDemoServlet extends SlingSafeMethodsServlet {
 			WorkItem workflowItem;
 			try {
 				workflowItem = wfSession.getWorkItem(workflowItemPath);
+				// method 1
 				wrs.retryWorkflow(wfSession, workflowItem, params);
+				
+				// method 2
+				// wrs.retryWorkflow(workflowItemPath, params);
 			} catch (WorkflowException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
