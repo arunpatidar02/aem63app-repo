@@ -20,7 +20,7 @@ import com.adobe.granite.workflow.exec.WorkItem;
 @Component
 public class WorkflowRetryServiceImpl implements WorkflowRetryService {
 
-	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private static final String SUB_SERVICE = "adminService";
 
 	@Reference
@@ -29,14 +29,10 @@ public class WorkflowRetryServiceImpl implements WorkflowRetryService {
 	@Override
 	public void retryWorkflow(WorkflowSession wfSession, WorkItem workflowItem, Map<String, String> param) {
 		try {
-			if (wfSession != null) {
-				advance(wfSession, workflowItem, param);
-			} else {
-				logger.warn("[retryWorkflow] : Workflow session is null");
-			}
+			advance(wfSession, workflowItem, param);
 		} catch (WorkflowException | IOException e) {
 			e.printStackTrace();
-			logger.info("Exception " + e.getMessage());
+			logger.error("Exception " + e.getMessage());
 		}
 	}
 
@@ -51,11 +47,11 @@ public class WorkflowRetryServiceImpl implements WorkflowRetryService {
 				workflowItem = wfSession.getWorkItem(workflowItemPath);
 				advance(wfSession, workflowItem, param);
 			} else {
-				logger.warn("[retryWorkflow] : Workflow session is null");
+				logger.warn("[retryWorkflow] : WorkflowSession is null");
 			}
 		} catch (WorkflowException | IOException e) {
 			e.printStackTrace();
-			logger.info("Exception " + e.getMessage());
+			logger.error("Exception " + e.getMessage());
 		} finally {
 			closeResourceResolver(resourceResolver);
 		}
@@ -64,7 +60,13 @@ public class WorkflowRetryServiceImpl implements WorkflowRetryService {
 
 	private void advance(WorkflowSession wfSession, WorkItem workflowItem, Map<String, String> param)
 			throws WorkflowException, IOException {
-		if ("FailureItem".equals(workflowItem.getItemSubType())) {
+		if (wfSession == null) {
+			logger.warn("[advance] : workflowSession is null");
+		} else if (workflowItem == null) {
+			logger.warn("[advance] : workflowItem is null");
+		} else if (!"FailureItem".equals(workflowItem.getItemSubType())) {
+			logger.warn("workflowItem status is not type of FailureItem ");
+		} else {
 			for (Map.Entry<String, String> entry : param.entrySet()) {
 				workflowItem.getMetaDataMap().put(entry.getKey(), entry.getValue());
 			}
@@ -73,10 +75,8 @@ public class WorkflowRetryServiceImpl implements WorkflowRetryService {
 	}
 
 	public static void retryStep(WorkflowSession wfSession, WorkItem item) throws WorkflowException, IOException {
-		if (item != null) {
-			Route loopRoute = new LoopbackRoute(item);
-			wfSession.complete(item, loopRoute);
-		}
+		Route loopRoute = new LoopbackRoute(item);
+		wfSession.complete(item, loopRoute);
 	}
 
 	// get ResourceResolver
@@ -88,7 +88,7 @@ public class WorkflowRetryServiceImpl implements WorkflowRetryService {
 			resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.debug("getResourceResolver : Unable to ResourceResolver : " + e);
+			logger.error("getResourceResolver : Unable to ResourceResolver : " + e);
 		}
 		return resourceResolver;
 	}
