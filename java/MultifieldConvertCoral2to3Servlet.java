@@ -23,7 +23,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.aem.community.core.bean.MultifieldConvertItems;
 import com.google.gson.Gson;
 
 
@@ -82,6 +81,25 @@ public class MultifieldConvertCoral2to3Servlet extends SlingSafeMethodsServlet {
 			response.getWriter().close();
 		}
 		response.setContentType("text/plain");
+
+	}
+	
+	public class MultifieldConvertItems {
+		private String page;
+		private String path;
+		private String aboutrich;
+
+		public String getPage() {
+			return page;
+		}
+
+		public String getPath() {
+			return path;
+		}
+
+		public String getAboutrich() {
+			return aboutrich;
+		}
 
 	}
 
