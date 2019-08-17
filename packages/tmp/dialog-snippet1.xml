@@ -1,0 +1,44 @@
+<pages
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/foundation/form/multifield"
+    class="full-width"
+    composite="{Boolean}true"
+    fieldDescription="Click '+' to add a new page"
+    fieldLabel="URLs">
+        <field
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+        acs-commons-nested="JSON_STORE"
+        name="./iItems">
+            <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+            method="absolute"/>
+            <items jcr:primaryType="nt:unstructured">
+                <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                    <items jcr:primaryType="nt:unstructured">
+                        <page
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldDescription="Enter Page name"
+                        fieldLabel="Page Name"
+                        name="./page"/>
+                        <path
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                        fieldDescription="Enter Path name"
+                        fieldLabel="Path Name"
+                        name="./path"/>
+                        <aboutmerich
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                        fieldLabel="Tell me about you"
+                        name="./aboutrich"
+                        useFixedInlineToolbar="{Boolean}true"/>
+                    </items>
+                </column>
+            </items>
+        </field>
+</pages>
