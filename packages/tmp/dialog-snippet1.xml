@@ -7,7 +7,7 @@
     fieldLabel="URLs">
         <field
         jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+        sling:resourceType="granite/ui/components/foundation/form/fieldset"
         acs-commons-nested="JSON_STORE"
         name="./iItems">
             <layout
