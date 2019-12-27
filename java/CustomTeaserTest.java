@@ -25,7 +25,6 @@ private final AemContext context = new AemContext();
 	void setUp() throws Exception {
 		context.addModelsForClasses(CustomTeaser.class);
 		context.load().json(CustomTeaserTest.class.getResourceAsStream("CustomTeaserTest.json"),TEASER1);
-		context.load().json(CustomTeaserTest.class.getResourceAsStream("CustomTeaserTest2.json"),TEASER2);
 	}
 
 	@Test
@@ -33,7 +32,6 @@ private final AemContext context = new AemContext();
 		context.currentResource(TEASER1);
 		CustomTeaser customTeaser1 = context.request().adaptTo(CustomTeaser.class);
 		assertNotNull(customTeaser1);
-		assertNotNull(context.currentResource(TEASER1+"/"+Teaser.NN_ACTIONS));
 		assertNotNull(customTeaser1.getImgAlign());
 	}
 	
