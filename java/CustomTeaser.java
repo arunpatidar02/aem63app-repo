@@ -16,7 +16,7 @@ import org.apache.sling.models.annotations.via.ResourceSuperType;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.Teaser;
 
-@Model(adaptables = SlingHttpServletRequest.class, adapters = {Teaser.class,DemoCustomTeaser.class}, resourceType = Constants.TEASER_RESOURCE_TYPE, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, adapters = {Teaser.class,CustomTeaser.class}, resourceType = DemoConstants.TEASER_RESOURCE_TYPE, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CustomTeaser implements Teaser {
 
 	@Self
