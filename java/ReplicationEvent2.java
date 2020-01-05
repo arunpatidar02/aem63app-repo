@@ -13,14 +13,14 @@ import com.day.cq.replication.ReplicationAction;
 @Component(service = EventHandler.class, immediate = true, property = {
 		Constants.SERVICE_DESCRIPTION + "=Demo to listen event on page Activation ",
 		EventConstants.EVENT_TOPIC + "=" + ReplicationAction.EVENT_TOPIC,
-		EventConstants.EVENT_FILTER + "path=/content/AEM63Lab/*" })
+		EventConstants.EVENT_FILTER + "=(paths=/content/AEM63App/*)" })
 public class ReplicationEvent2 implements EventHandler {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReplicationEvent2.class);
 
 	@Override
 	public void handleEvent(Event event) {
-		LOG.info("Hi event is called Replication Test 2......");
+		LOG.info("Event is called with paths Replication Test 2......");
 	}
 
 }
