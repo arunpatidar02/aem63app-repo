@@ -30,9 +30,9 @@ public class GetPageFromAliasServlet extends SlingSafeMethodsServlet {
 			if (rs != null) {
 				Page page = rs.adaptTo(Page.class);
 				if (page != null) {
-					resp.getWriter().write("Page Title is " + page.getPageTitle());
+					resp.getWriter().write("Resource is "+rs.getPath()+" and Page Title is " + page.getPageTitle());
 				} else {
-					resp.getWriter().write("No Page Found ");
+					resp.getWriter().write("Resource is "+rs.getPath()+" and No Page Found");
 				}
 			}
 		}
