@@ -40,10 +40,10 @@ public class CustomCRXScreenFilter implements Filter {
 		final String SCRIPT_URL = "/libs/cq/i18n/dict";
 		String targetUser = "aem63user1";
 
-		String refeer = slingRequest.getHeader("referer").toString();
+		String refererURL = slingRequest.getHeader("referer").toString();
 		String url = slingRequest.getPathInfo().toString();
 		String currentUser = slingRequest.getRemoteUser();
-		if (url.contains(SCRIPT_URL) && refeer != null && refeer.contains(CRXDE_URL) && currentUser.equals(targetUser)) {
+		if (url.contains(SCRIPT_URL) && refererURL != null && refererURL.contains(CRXDE_URL) && currentUser.equals(targetUser)) {
 			slingResponse.sendRedirect(TOUCH_UI_HOME_SCRIPT);
 		}
 
