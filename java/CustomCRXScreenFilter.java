@@ -21,7 +21,7 @@ import org.osgi.service.component.annotations.Component;
  * access CRXDE for incoming requests.
  */
 @Component(service = Filter.class, property = {
-		Constants.SERVICE_DESCRIPTION + "= Filter incoming requests and redirect to new home page",
+		Constants.SERVICE_DESCRIPTION + "= Filter incoming CRXDE requests and redirect to new home page",
 		EngineConstants.SLING_FILTER_SCOPE + "=" + EngineConstants.FILTER_SCOPE_REQUEST,
 		Constants.SERVICE_RANKING + "=-701"
 
@@ -37,13 +37,13 @@ public class CustomCRXScreenFilter implements Filter {
 
 		final String CRXDE_URL = "/crx/de/index.jsp";
 		final String TOUCH_UI_HOME_SCRIPT = "/apps/AEM63App/clientlibs/crxredirect.js";
-		final String TOKEN_URL = "/libs/cq/i18n/dict";
+		final String SCRIPT_URL = "/libs/cq/i18n/dict";
 		String targetUser = "aem63user1";
 
 		String refeer = slingRequest.getHeader("referer").toString();
 		String url = slingRequest.getPathInfo().toString();
 		String currentUser = slingRequest.getRemoteUser();
-		if (url.contains(TOKEN_URL) && refeer != null && refeer.contains(CRXDE_URL) && currentUser.equals(targetUser)) {
+		if (url.contains(SCRIPT_URL) && refeer != null && refeer.contains(CRXDE_URL) && currentUser.equals(targetUser)) {
 			slingResponse.sendRedirect(TOUCH_UI_HOME_SCRIPT);
 		}
 
