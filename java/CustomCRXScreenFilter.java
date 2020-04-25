@@ -38,10 +38,10 @@ public class CustomCRXScreenFilter implements Filter {
 		final String CRXDE_URL = "/crx/de/index.jsp";
 		final String TOUCH_UI_HOME_SCRIPT = "/apps/AEM63App/clientlibs/crxredirect.js";
 		final String SCRIPT_URL = "/libs/cq/i18n/dict";
-		String targetUser = "aem63user1";
+		String targetUser = "aem63user11";
 
-		String refererURL = slingRequest.getHeader("referer").toString();
-		String url = slingRequest.getPathInfo().toString();
+		String refererURL = slingRequest.getHeader("referer");
+		String url = slingRequest.getPathInfo();
 		String currentUser = slingRequest.getRemoteUser();
 		if (url.contains(SCRIPT_URL) && refererURL != null && refererURL.contains(CRXDE_URL) && currentUser.equals(targetUser)) {
 			slingResponse.sendRedirect(TOUCH_UI_HOME_SCRIPT);
