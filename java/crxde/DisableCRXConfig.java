@@ -7,7 +7,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 @ObjectClassDefinition(name = "Disabled CRXDE Configuration", description = "Configuration to restrict user to access CRXDE")
 public @interface DisableCRXConfig {
 
-	@AttributeDefinition(name = "enabled", description = "If check, CRXDE restriction will be applied based on configurations", type = AttributeType.BOOLEAN)
+	@AttributeDefinition(name = "enabled", description = "If checked, CRXDE restriction will be applied based on configurations", type = AttributeType.BOOLEAN)
 	boolean isEnabled() default false;
 
 	@AttributeDefinition(name = "Users", description = "List of Users to restrict CRXDE", type = AttributeType.STRING)

@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.engine.EngineConstants;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
@@ -26,6 +27,8 @@ import com.aem.community.core.services.DisableCRXService;
 @Component(service = Filter.class, property = {
 		Constants.SERVICE_DESCRIPTION + "= Filter incoming CRXDE requests and redirect to new home page",
 		EngineConstants.SLING_FILTER_SCOPE + "=" + EngineConstants.FILTER_SCOPE_REQUEST,
+		EngineConstants.SLING_FILTER_PATTERN + "=/libs/cq/i18n/dict.*",
+		"sling.filter.methods=" + HttpConstants.METHOD_GET, //EngineConstants.SLING_FILTER_METHODS + "=" + HttpConstants.METHOD_GET,
 		Constants.SERVICE_RANKING + "=-701"
 
 })
