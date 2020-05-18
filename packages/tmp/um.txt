@@ -1,0 +1,10 @@
+Here are few sample code you can use to users:-
+
+First:
+org.apache.jackrabbit.api.security.user.UserManager userManager = resourceResolver.adaptTo(org.apache.jackrabbit.api.security.user.UserManager.class); if(userManager == null){ log.error("userManager == null!"); return; } String login = "login"; String password = "password"; org.apache.jackrabbit.api.security.user.User user = userManager.createUser(login, password);
+
+Second:
+ResourceResolver resolver=request.getResourceResolver(); Session session=request.getResourceResolver().adaptTo(Session.class); UserManager userManager = resolver.adaptTo(UserManager.class); Group group=userManager.createGroup("Group Name"); User user=userManager.createUser("username",”pwd”); if (! userManager.isAutoSave()) { session.save(); }
+
+Third:
+// Create UserManager Object org.apache.jackrabbit.api.security.user.UserManager; UserManager userManager = resolver.adaptTo(UserManager.class); // Create a Group and User Group group=userManager.createGroup("My Group"); User user = userManager.createUser(name, password); // Add Users to Group Authorizable authUser = userManager.getAuthorizable(user.getID()); group.addMember(authUser); // Provide permissions to Group AccessControlManager accCtrlMgr = session.getAccessControlManager(); JackrabbitSession jcrSession = (JackrabbitSession) session; PrincipalManager principalMgr = jcrSession.getPrincipalManager(); Principal groupPrincipal = principalMgr.getPrincipal(group); Privilege[] privileges = new Privilege[] { accCtrlMgr.privilegeFromName(Privilege.JCR_ALL) }; // Set privileges to particular path AccessControlList acl = accCtrlMgr.getApplicablePolicies(path).nextAccessControlPolicy(); acl.addAccessControlEntry(groupPrincipal, rootNodePrivilege); accCtrlMgr.setPolicy(path, acl); session.save();
