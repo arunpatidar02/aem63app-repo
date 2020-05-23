@@ -1,0 +1,35 @@
+coral-multifield .coral-Multifield-item:not(:first-child){
+    border-top:2px solid lightgray;
+    margin-bottom:3%;
+    margin-top:5%;
+} 
+
+coral-multifield .coral-Multifield-item:first-child{
+    margin-bottom:3%;
+    margin-top:-2%;
+} 
+
+coral-multifield .coral-Multifield-item:last-child{
+    margin-bottom:0%;
+    margin-top:5%;
+} 
+
+coral-multifield .coral-Multifield-item .coral-Multifield-remove,
+coral-multifield .coral-Multifield-item .coral-Multifield-move,
+coral-multifield .coral-Multifield-item coral-multifield-item-content{
+    padding-top:20px
+}
+
+coral-multifield{
+    counter-reset: coral-Multifield-item;
+} 
+
+coral-multifield coral-Multifield-item::before{
+    counter-increment: coral-Multifield-item;
+    content: counter(coral-Multifield-item);
+    font-size:large;
+    background-color:lightgray;
+    padding:0 1% ;
+    float:right;
+    margin-right:-88px;
+} 
