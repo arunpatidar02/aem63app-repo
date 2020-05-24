@@ -1,0 +1,38 @@
+/*CSS to add fancy separtor for multifield(Granite type)*/
+.cq-Dialog coral-multifield coral-multifield-item:not(:first-child){
+    border-top:2px solid lightgrey;
+    margin-bottom:10px;
+    margin-top:20px;
+} 
+
+
+.cq-Dialog coral-multifield coral-multifield-item:first-child{
+    margin-bottom:10px;
+    margin-top:-10px;
+} 
+
+.cq-Dialog coral-multifield coral-multifield-item:last-child{
+    margin-bottom:0px;
+    margin-top:20px;
+} 
+
+.cq-Dialog coral-multifield coral-multifield-item .coral3-Multifield-remove,
+.cq-Dialog coral-multifield coral-multifield-item .coral3-Multifield-move,
+.cq-Dialog coral-multifield coral-multifield-item coral-multifield-item-content{
+    padding-top:20px
+}
+
+coral-multifield{
+    counter-reset: coral-multifield-item;
+} 
+
+coral-multifield coral-Multifield-item::before{
+    counter-increment: coral-multifield-item;
+    content: counter(coral-multifield-item);
+    font-size:large;
+    background-color:lightgray;
+    color:#919191;
+    padding:0 5px ;
+    float:right;
+    margin-right:-86px;
+} 
