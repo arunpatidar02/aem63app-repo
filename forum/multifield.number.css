@@ -22,11 +22,11 @@
     padding-top:20px
 }
 
-coral-multifield{
+.cq-Dialog coral-multifield{
     counter-reset: coral-multifield-item;
 } 
 
-coral-multifield coral-Multifield-item::before{
+.cq-Dialog coral-multifield coral-Multifield-item::before{
     counter-increment: coral-multifield-item;
     content: counter(coral-multifield-item);
     font-size:large;
