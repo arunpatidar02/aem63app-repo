@@ -12,7 +12,6 @@
  * - add the attribute showhidetargetvalue to each target component, the value(or commma separated multiple values e.g. val1, val2) should equal the value of the select
  *   option that will unhide this element.
  */
-
 (function(document, $) {
     "use strict";
 
@@ -64,8 +63,8 @@
                 if (elementIndex == tarIndex) {
                     $(this).not(".hide").addClass("hide");
                     $(this).filter(function() {
-  						return $(this).data('showhidetargetvalue').replace(/ /g, '').split(',').includes(value);
-					}).removeClass("hide");
+                        return $(this).data('showhidetargetvalue').replace(/ /g, '').split(',').includes(value);
+                    }).removeClass("hide");
                 }
             });
         }
