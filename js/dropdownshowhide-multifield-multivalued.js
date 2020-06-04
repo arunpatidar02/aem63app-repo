@@ -1,6 +1,6 @@
 /**
  * Extension to the standard dropdown/select component. It enabled hidding/unhidding of other components based on the
- * selection made in the dropdown/select in multifield and maultivalued.
+ * selection made in the dropdown/select in multifield and multivalued.
  *
  * How to use:
  *
