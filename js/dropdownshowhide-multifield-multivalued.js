@@ -53,9 +53,9 @@
 
         if (target) {
             var value;
-            if (component.value) {
+            if (typeof component.value !== "undefined") {
                 value = component.value;
-            } else {
+             } else if (typeof component.getValue === "function") {
                 value = component.getValue();
             }
             $target.each(function(index) {
