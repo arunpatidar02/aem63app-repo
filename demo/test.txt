@@ -1,0 +1,40 @@
+ModelHelper.java
+
+/**
+	 * @param resource
+	 * @param modelClass
+	 *            class of the model
+	 * @param <T>
+	 *            type of class of the model
+	 * @return List of models retrieved from the children of the input resource
+	 */
+	public static <T> List<T> getChildrenModels(final Resource resource, Class<T> modelClass) {
+		List<T> items = null;
+		if (resource != null) {
+			items = new ArrayList<T>();
+
+			final Iterator<Resource> childrenIterator = resource.listChildren();
+			while (childrenIterator.hasNext()) {
+				final Resource next = childrenIterator.next();
+				final T item = next.adaptTo(modelClass);
+				items.add(item);
+			}
+		}
+		return items;
+	}
+
+--------------------------------------------------------------------------------------------------------------
+  
+  TestModel.java
+  
+  @Inject
+	private Resource childitems;
+  
+  private List<LinkModel> listItems = Collections.emptyList();
+  
+  @PostConstruct
+	protected void init() {
+		if (navitems != null) {
+			listItems = ModelHelper.getChildrenModels(childitems, LinkModel.class);
+		}
+	}
