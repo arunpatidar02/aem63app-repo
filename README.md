@@ -2,7 +2,7 @@
 
 <h1 align="center">Hi 👋, I'm Arun Patidar</h1>  
 <h3 align="center">AEM Full Stack developer</h3> 
-<h3 align="center">[Adobe Expereince Leauge MVP - AEM](https://experienceleaguecommunities.adobe.com/t5/user/viewprofilepage/user-id/6786635)</h3>
+<h3 align="center"><a href="https://experienceleaguecommunities.adobe.com/t5/user/viewprofilepage/user-id/6786635">Adobe Expereince Leauge MVP - AEM</a></h3>
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=arunpatidar02" alt="arunpatidar02" /> </p>  
   
 📝 I regulary write articles on [http://aemlab.blogspot.com/](http://aemlab.blogspot.com/)  
