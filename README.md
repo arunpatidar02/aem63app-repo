@@ -26,4 +26,4 @@
 </p>
   
   
-<p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=arunpatidar02&show_icons=true" alt="arunpatidar02" /> </p>    
+<p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=arunpatidar02&show_icons=true&bg_color=F5F5F5" alt="arunpatidar02" /> </p>    
