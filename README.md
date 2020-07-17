@@ -20,10 +20,8 @@
 
   
   
-📫 How to reach me **arunpatidar26@gmail.com**  
-<p align="left">  
-<a href="https://linkedin.com/in/arunpatidar26" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="arunpatidar26" height="20" width="20" /></a>  
-</p>
   
   
-<p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=arunpatidar02&show_icons=true&bg_color=F5F5F5" alt="arunpatidar02" /> </p>    
+<p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=arunpatidar02&show_icons=true&bg_color=F5F5F5" alt="arunpatidar02" /></p> 
+<p align="center"> Reach me out at  <a href="mailto:arunpatidar26@gmail.com" target="blank">📫</a>  <a href="https://linkedin.com/in/arunpatidar26" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="arunpatidar26" height="20" width="20" /></a>  
+</p>    
