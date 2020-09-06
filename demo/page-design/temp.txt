@@ -1,0 +1,7 @@
+/libs/wcm/foundation/components/basicpage/v1/basicpage/tabs/basic/items/column/items/title/items/title/granite:data
+cq-page-clientlibs = ${not empty cqDesign.clientlibs ? cqDesign.clientlibs : 'false'}
+
+or 
+
+/libs/wcm/foundation/components/basicpage/v1/basicpage/tabs/basic/items/column/items/title/items/title
+granite:class=${not empty cqDesign.clientlibs ? 'hide' : ''}
