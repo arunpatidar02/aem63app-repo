@@ -11,11 +11,11 @@ import com.adobe.granite.ui.clientlibs.LibraryType;
  * Sightly Code
  * 
 <!-- CSS -->
-<sly data-sly-use.jsObj="com.aem.community.core.components.JSModel" data-sly-list="${jsObj.cssFiles}">
+<sly data-sly-use.jsObj="com.aem.community.core.components.ClientLibsModel" data-sly-list="${jsObj.cssFiles}">
     <link rel="stylesheet" href="${item}" type="text/css" async>
 </sly>
 <!-- JS -->
-<sly data-sly-use.jsObj="com.aem.community.core.components.JSModel" data-sly-list="${jsObj.jsFiles}">
+<sly data-sly-use.jsObj="com.aem.community.core.components.ClientLibsModel" data-sly-list="${jsObj.jsFiles}">
  	<script async type="text/javascript" src="${item}"></script>
 </sly>
  * 
