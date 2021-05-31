@@ -1,0 +1,16 @@
+coral-tooltip.coral-tooltip--img {
+    width: 400px;
+}
+
+coral-tooltip-content.coral-tooltip-content--img{
+    width: 100%;
+    max-width:400px;
+}
+
+.coral-tooltip-content--img img{
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    margin: 5px auto;
+}
