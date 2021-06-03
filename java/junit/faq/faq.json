@@ -1,0 +1,19 @@
+{
+	"jcr:primaryType": "nt:unstructured",
+	"headline": "Headline1",
+	"accoridonArray": {
+      "jcr:primaryType": "nt:unstructured",
+      "item0": {
+        "jcr:primaryType": "nt:unstructured",
+        "answer": "Answer",
+        "question": "Question",
+        "isCitationStyling":true
+      },
+      "item1": {
+        "jcr:primaryType": "nt:unstructured",
+        "answer": "Answer",
+        "question": "Question",
+        "isCitationStyling":true
+      }
+     }
+}
