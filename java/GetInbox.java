@@ -1,8 +1,8 @@
-package com.aem.community.core.servlets;
-
+package com.allianz.onemarketing.dechap.core.censhare.services;
 import java.io.IOException;
 import java.util.Iterator;
 
+import javax.jcr.Session;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
@@ -58,8 +58,8 @@ public class GetInbox extends SlingSafeMethodsServlet {
 			WorkflowSession graniteWorkflowSession = request.getResourceResolver().adaptTo(WorkflowSession.class);		    
 			WorkItem[] workItems = graniteWorkflowSession.getActiveWorkItems();
 						
-			response.getWriter().write("<h2>Workflow Items</h2>");
-		    str = "<table border='1'><tr><td>S.No</td><td>workflow Id</td><td></td>Initaited by<td>Assignee</td><td>Type</td></tr>";
+			response.getWriter().write("<h2>Workflow Items("+ workItems.length+")</h2>");
+		    str = "<table border='1'><tr><td>S.No</td><td>workflow Id</td><td>Initaited by</td><td>Assignee</td><td>Type</td><td>Due Date</td></tr>";
 			for(int i=0;i<workItems.length;i++) {
 				int c = 1;
 				str += "<tr>";
@@ -68,16 +68,17 @@ public class GetInbox extends SlingSafeMethodsServlet {
 				str+="<td>"+workItems[i].getId()+"</td>";
 				str+="<td>"+workItems[i].getWorkflow().getInitiator()+"</td>";
 				str+="<td>"+workItems[i].getCurrentAssignee()+"</td>";
-				str+="<td>"+workItems[i].getItemType().toString()+"</td>";
+				str+="<td>"+workItems[i].getItemType()+"</td>";
+				str+="<td>"+workItems[i].getDueTime()+"</td>"; //dueTime property
 				str += "</tr>";
 			}
 			str += "</table>";
 			
 			response.getWriter().write(str);
+			request.getResourceResolver().adaptTo(Session.class).save();
 						
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		  response.getWriter().write(e.getMessage());
 		}
 		response.setContentType("text/html");
 		response.getWriter().close();
