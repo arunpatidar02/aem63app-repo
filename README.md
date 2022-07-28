@@ -12,11 +12,11 @@
  - <img
    src="https://www.adobe.com/content/dam/www/icons/adobe-experience-manager.svg"
    alt="AEM" width="20" height="20"/> AEM
-  - <img  src="https://konpa.github.io/devicon/devicon.git/icons/javascript/javascript-original.svg"
+ - <img  src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/javascript.svg"
    alt="javascript" width="20" height="20"/> JavaScript
-- <img
-   src="https://konpa.github.io/devicon/devicon.git/icons/css3/css3-original-wordmark.svg"
-   alt="css3" width="20" height="20"/>  CSS**
+ - <img
+   src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/css3.svg"
+   alt="css3" width="20" height="20"/>  CSS
 
 <p><hr/></p> 
   
