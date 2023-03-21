@@ -79,6 +79,7 @@ public class GetPageJsonServlet extends SlingSafeMethodsServlet {
 			currentResource = getCurrentResource(currentResource);
 			pageTree = new JSONNode(currentResource.getName(), getFilteredValueMap(currentResource.getValueMap()));
 			collectChild(pageTree, currentResource, req, null);
+			resp.setContentType("application/json");
 			resp.getWriter().write(getJsonString(pageTree));
 
 		} catch (Exception e) {
