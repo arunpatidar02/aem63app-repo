@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/libs/settings/wcm/designs/default"
+        cq:template="/libs/cq/workflow/templates/model"
+        jcr:description="The Editorial Workflow"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Editorial Workflow"
+        sling:resourceType="cq/workflow/components/pages/model">
+        <flow
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <initiatorparticipant
+                jcr:description="Allows to define at what time the payload is going to be published or unpublished."
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Configure Publication Time"
+                sling:resourceType="cq/workflow/components/workflow/initiatorparticipantchooser"
+                DYNAMIC_PARTICIPANT="/libs/workflow/scripts/initiator-participant-chooser.ecma"
+                PROCESS_AUTO_ADVANCE="true">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    DIALOG_PATH="/apps/myproject/components/dialogs/workflow/publication-time/cq:dialog"
+                    DYNAMIC_PARTICIPANT="/libs/workflow/scripts/initiator-participant-chooser.ecma"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </initiatorparticipant>
+            <process
+                jcr:description="Configures the Timeout property absoluteTime in the workflow metadata"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Set Timeout for Publication"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.myproject.core.workflow.SetAbsoluteTimeProcessStep"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </process>
+            <participant
+                jcr:description="A step which 'waits' until the publication time is reached or advances automatically if not. This is achieved by a participant step assigned to the admin (or any other technical user) with an autoAdvanceHandler and an absoluteTimeout defined based on the input from the first dialog."
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Await Publication Time"
+                sling:resourceType="cq/workflow/components/model/participant">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PARTICIPANT="admin"
+                    timeoutHandler="com.adobe.granite.workflow.console.timeout.autoadvance.AbsoluteTimeAutoAdvancer"
+                    timeoutMillis="1"/>
+            </participant>
+            <or
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="cq/workflow/components/model/or"
+                branches="2"
+                default1="true"
+                orSplit="true"
+                scriptPath1="/apps/myproject/components/scripts/workflow/scheduled-publication-workflow/CheckActionSelected.ecma">
+                <unpublish
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/flow/components/parsys">
+                    <process
+                        jcr:description="Automatically de-publishes the payload."
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="De-Publication"
+                        sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            PROCESS="com.day.cq.wcm.workflow.process.DeactivatePageProcess"
+                            PROCESS_AUTO_ADVANCE="true"/>
+                    </process>
+                </unpublish>
+                <publish
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/flow/components/parsys">
+                    <process
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title=" Custom Publication Step"
+                        sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            PROCESS="com.myproject.core.workflow.CustomPublicationStep"
+                            PROCESS_AUTO_ADVANCE="true"/>
+                    </process>
+                </publish>
+            </or>
+        </flow>
+    </jcr:content>
+</jcr:root>
